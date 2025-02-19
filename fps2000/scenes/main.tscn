@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://c7nbtnjyv7t5f"]
+[gd_scene load_steps=2 format=3 uid="uid://c7nbtnjyv7t5f"]
+
+[ext_resource type="PackedScene" uid="uid://dodllx0eidmwj" path="res://scenes/player.tscn" id="1_exn2l"]
 
 [node name="Main" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_exn2l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09741, 0)
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65396, -1.19379, 0)
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
