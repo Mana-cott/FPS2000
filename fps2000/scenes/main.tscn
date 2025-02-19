@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7nbtnjyv7t5f"]
+[gd_scene load_steps=3 format=3 uid="uid://c7nbtnjyv7t5f"]
 
 [ext_resource type="PackedScene" uid="uid://dodllx0eidmwj" path="res://scenes/player.tscn" id="1_exn2l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwiva"]
+albedo_color = Color(0.156204, 0.456188, 0.523529, 1)
 
 [node name="Main" type="Node3D"]
 
@@ -9,10 +12,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09741, 0)
 
 [node name="Level" type="Node3D" parent="."]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+[node name="Floor" type="CSGBox3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65396, -1.19379, 0)
 use_collision = true
 size = Vector3(30, 1, 30)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -2.3479)
+use_collision = true
+size = Vector3(1, 1, 5.6958)
+material = SubResource("StandardMaterial3D_iwiva")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
+transform = Transform3D(0.50176, 0.748833, -0.432997, 0.47387, 0.180816, 0.861831, 0.72366, -0.637617, -0.264123, 0, 0, 0)
