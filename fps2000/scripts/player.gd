@@ -6,8 +6,12 @@ const JUMP_VELOCITY = 4.5
 
 var speed = SPEED
 var is_crouching = false
+var bullet = load("res://scenes/bullet.tscn")
+
 @export var mouse_sensitivity = 0.002
+
 @onready var camera = $Camera3D
+@onready var raycast = $RayCast3D
 @onready var standing_col = $StandingCollisionShape3D
 @onready var crouching_col = $CrouchingCollisionShape3D
 
@@ -22,6 +26,7 @@ func _input(event):
 		camera.rotation.x = clampf(camera.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 		
 func _physics_process(delta):
+	print(raycast.get_collider())
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -41,7 +46,19 @@ func _physics_process(delta):
 		is_crouching = false if is_crouching else true #toggle
 		crouch(is_crouching)
 		
-
+	# Handle shoot.
+	if Input.is_action_just_pressed("shoot"):
+		if Global.pistol_ammo > 0:
+			var instance = bullet.instantiate()
+			instance.position = camera.global_position
+			instance.transform.basis = camera.global_transform.basis
+			get_parent().add_child(instance)
+			Global.pistol_ammo -= 1
+			
+	# Handle reload.
+	if Input.is_action_just_pressed("reload"):
+		Global.pistol_ammo = 6
+		
 	var input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var movement_dir = (transform.basis * Vector3(input.x, 0, input.y))
 	velocity.x = movement_dir.x * speed

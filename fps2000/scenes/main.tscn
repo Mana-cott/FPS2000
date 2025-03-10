@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7nbtnjyv7t5f"]
+[gd_scene load_steps=6 format=3 uid="uid://c7nbtnjyv7t5f"]
 
 [ext_resource type="PackedScene" uid="uid://dodllx0eidmwj" path="res://scenes/player.tscn" id="1_exn2l"]
+[ext_resource type="PackedScene" uid="uid://cpn0l4annlfpj" path="res://hack.tscn" id="2_6njbt"]
+[ext_resource type="PackedScene" uid="uid://dag6fmx04k181" path="res://scenes/enemy.tscn" id="3_67cn2"]
+[ext_resource type="Texture2D" uid="uid://d1w1xaxun8lxs" path="res://assets/crosshair001.png" id="5_aajjd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwiva"]
 albedo_color = Color(0.156204, 0.456188, 0.523529, 1)
@@ -10,11 +13,19 @@ albedo_color = Color(0.156204, 0.456188, 0.523529, 1)
 [node name="Player" parent="." instance=ExtResource("1_exn2l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09741, 0)
 
+[node name="Hack" parent="." instance=ExtResource("2_6njbt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+
+[node name="Enemy" parent="." instance=ExtResource("3_67cn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, 0)
+
 [node name="Level" type="Node3D" parent="."]
 
 [node name="Floor" type="CSGBox3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65396, -1.19379, 0)
 use_collision = true
+collision_layer = 3
+collision_mask = 3
 size = Vector3(30, 1, 30)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Level"]
@@ -25,3 +36,27 @@ material = SubResource("StandardMaterial3D_iwiva")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.50176, 0.748833, -0.432997, 0.47387, 0.180816, 0.861831, 0.72366, -0.637617, -0.264123, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Crosshair" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Crosshair"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_aajjd")

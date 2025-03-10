@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://d1rw8dex868h1"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 1154.0
+offset_bottom = 646.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="StatusContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HealthContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/StatusContainer"]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="MarginContainer/VBoxContainer/StatusContainer/HealthContainer"]
+layout_mode = 2
+text = "HEALTH:"
+
+[node name="HealthValue" type="HSlider" parent="MarginContainer/VBoxContainer/StatusContainer/HealthContainer"]
+layout_mode = 2
+editable = false
+scrollable = false
+
+[node name="StaminaContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/StatusContainer"]
+layout_mode = 2
+
+[node name="StaminaLabel" type="Label" parent="MarginContainer/VBoxContainer/StatusContainer/StaminaContainer"]
+layout_mode = 2
+text = "STAMINA:"
+
+[node name="StaminaValue" type="HSlider" parent="MarginContainer/VBoxContainer/StatusContainer/StaminaContainer"]
+layout_mode = 2
+
+[node name="AmmoContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="AmmoLabel" type="Label" parent="MarginContainer/VBoxContainer/AmmoContainer"]
+layout_mode = 2
+text = "AMMO LEFT: "
+
+[node name="AmmoValue" type="Label" parent="MarginContainer/VBoxContainer/AmmoContainer"]
+layout_mode = 2

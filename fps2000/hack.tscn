@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpn0l4annlfpj"]
+
+[ext_resource type="Script" path="res://scripts/hack.gd" id="1_3ws65"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ymuur"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q586l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xr1ch"]
+transparency = 1
+albedo_color = Color(0.521569, 0.384314, 0.67451, 0.333333)
+
+[node name="Hack" type="CharacterBody3D"]
+script = ExtResource("1_3ws65")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ymuur")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_q586l")
+surface_material_override/0 = SubResource("StandardMaterial3D_xr1ch")
